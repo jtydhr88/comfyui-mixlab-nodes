@@ -1,5 +1,19 @@
 ![](https://img.shields.io/github/release/shadowcz007/comfyui-mixlab-nodes)
 
+[English](./README_EN.md)
+
+## Fork 维护说明
+
+原项目已不再活跃维护。本 fork 由 ComfyUI 官方开发者 [@jtydhr88](https://github.com/jtydhr88) 维护，确保与当前版本的 ComfyUI 兼容。已移除原项目中一些冗余或存在兼容性问题的功能。本 fork 仅做兼容性修复，不会添加任何新功能。
+
+### 已移除的功能
+
+- **TouchDesigner 画布背景** (`td_background.js`) — 原代码用过时的副本替换了整个 `drawBackCanvas` 渲染管线，并在加载时将 `devicePixelRatio` 缓存为静态值，导致浏览器在不同 DPI 缩放的显示器之间移动时，节点连线出现严重错位。
+- **`centerOnNode` 覆盖** (`ui_mixlab.js`) — 该 DPR 修复已由 ComfyUI 原生支持，不再需要。
+- **节点 badge 渲染** (`ui_mixlab.js`) — 通过覆盖 `onDrawForeground` 绘制自定义 badge，现已由 ComfyUI 内置 badge 功能替代。
+
+---
+
 > 适配了最新版 comfyui 的 py3.11 ，torch 2.3.1+cu121
 > [Mixlab nodes discord](https://discord.gg/cXs9vZSqeK)
 
