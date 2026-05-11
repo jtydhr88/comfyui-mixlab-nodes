@@ -11,6 +11,9 @@ The original project is no longer actively maintained. This fork is maintained b
 - **TouchDesigner canvas background** (`td_background.js`) — Replaced the entire `drawBackCanvas` rendering pipeline with an outdated copy that cached `devicePixelRatio` at load time, causing node connections to become misaligned when moving the browser between monitors with different DPI scaling.
 - **`centerOnNode` override** (`ui_mixlab.js`) — DPR fix that is now handled natively by ComfyUI.
 - **Node badge rendering** (`ui_mixlab.js`) — Custom badge drawing via `onDrawForeground` override, now redundant as ComfyUI has built-in badge support.
+- **Global `drop` listener** (`ui_mixlab.js`) — A `document`-level drop handler that unconditionally called `preventDefault()` / `stopPropagation()` and routed dropped JSON files only to mixlab's own app-format loader, completely breaking drag-and-drop of standard ComfyUI workflow JSON files.
+- **mixlab App Builder feature** (`app_mixlab.js` file deleted, `ui_mixlab.js`) — Includes the `AppInfo` node frontend UI, the global `paste` listener + `loadAppJson`, the `get_my_app` API call, the "Workflow App" canvas context menu, the AppInfo highlighting in the node navigator panel, and the `VAEDecode → AppInfo` rule from `smart_connect.js`. This fork no longer supports packaging workflows into web apps.
+- **LiteGraph prototype modifications** (`ui_mixlab.js`, `smart_connect.js` file deleted) — All removed: added methods `helpAboutNode` / `fixTheNode` / `text2text` / `image2text`; overrides of `getGroupMenuOptions` / `getNodeMenuOptions` / `getCanvasMenuOptions`; and smart-connect's `_createNodeForInput` / `_createNodeForOutput`. The corresponding right-click menu items (Help, Fix node v2, Text-to-Text, Clone Group, Save Group as Template, Remove Group & Nodes, Nodes Map, smart-connect arrows) are removed accordingly, reducing menu-injection conflicts with other plugins.
 
 ---
 

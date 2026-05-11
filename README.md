@@ -11,6 +11,9 @@
 - **TouchDesigner 画布背景** (`td_background.js`) — 原代码用过时的副本替换了整个 `drawBackCanvas` 渲染管线，并在加载时将 `devicePixelRatio` 缓存为静态值，导致浏览器在不同 DPI 缩放的显示器之间移动时，节点连线出现严重错位。
 - **`centerOnNode` 覆盖** (`ui_mixlab.js`) — 该 DPR 修复已由 ComfyUI 原生支持，不再需要。
 - **节点 badge 渲染** (`ui_mixlab.js`) — 通过覆盖 `onDrawForeground` 绘制自定义 badge，现已由 ComfyUI 内置 badge 功能替代。
+- **全局 `drop` 监听器** (`ui_mixlab.js`) — 在 `document` 上挂的拖拽监听无条件调用 `preventDefault()` / `stopPropagation()`，把 JSON 工作流文件吞掉后只交给 mixlab 自有的 app 格式解析器，导致拖拽标准 ComfyUI 工作流 JSON 完全失效。
+- **mixlab App Builder 整套功能** (`app_mixlab.js` 整文件删除, `ui_mixlab.js`) — 包括 `AppInfo` 节点的前端 UI、全局 `paste` 监听器 + `loadAppJson`、`get_my_app` 接口调用、Workflow App 画布右键菜单、节点导航面板里的 AppInfo 高亮，以及 `smart_connect.js` 里的 `VAEDecode → AppInfo` 路由规则。本 fork 不再支持把工作流打包成 Web App。
+- **LiteGraph 原型修改** (`ui_mixlab.js`, `smart_connect.js` 整文件删除) — 全部移除：新增方法 `helpAboutNode` / `fixTheNode` / `text2text` / `image2text`；覆盖原方法 `getGroupMenuOptions` / `getNodeMenuOptions` / `getCanvasMenuOptions`；以及 smart-connect 的 `_createNodeForInput` / `_createNodeForOutput`。对应的右键菜单项（Help、Fix node v2、Text-to-Text、Clone Group、Save Group as Template、Remove Group&Nodes、Nodes Map、智能连线箭头）一并消失，减少与其他插件抢占菜单的冲突。
 
 ---
 
